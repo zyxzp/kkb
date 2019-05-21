@@ -1,18 +1,26 @@
 # ES6(常用的、重点的)
+
 ## 数组API、正则API、字符串API都不讲
+
 ## 模板字符串
-+ 模板字符串的基本用法
+
+- 模板字符串的基本用法
+
 ```js
     var s1 = `abc`
 ```
-+ 模板字符串的优势：
+
+- 模板字符串的优势：
+
 ```js
     var obj={ name:"",age:5 };
     var s1 ="我叫："+obj.name+"，今年："+obj.age+"岁。"
 ```
 
 ## 解构赋值
-+ 对象的解构赋值
+
+- 对象的解构赋值
+
 ```js
     var obj={name:"张三",age:18}
 
@@ -25,7 +33,8 @@
     //生成一个变量：title，值来自于obj.name
 ```
 
-+ 函数参数的解构赋值
+- 函数参数的解构赋值
+
 ```js
     function f1(obj){
         console.log(obj.age);
@@ -40,7 +49,8 @@
     f1({age:5,height:180})
 ```
 
-+ 补充：属性的简写
+- 补充：属性的简写
+
 ```js
     var a = 3 ; 
     var c = 10;
@@ -51,18 +61,27 @@
 ```
 
 ## 函数的扩展
+
 ### rest参数
-+ 使用背景：es6的
-+ 优点：arguments是伪数组，而rest参数是真数组
+
+- 使用背景：es6的
+- 优点：arguments是伪数组，而rest参数是真数组
+
 ```js
     function fn(...args){
+        console.log(args instanceof Array);//true
+        console.log(Object.prototype.toString.call(args));//"[object Array]"
+        console.log(Array.isArray(args));   //true es5中的新方法
         console.log(args);  //数组：[1,2,3,4,5]
     }
     fn(1,2,3,4,5)
 ```
+
 ### 箭头函数
-+ 场景：用于替换匿名函数
-+ 基本用法：
+
+- 场景：用于替换匿名函数
+- 基本用法：
+
 ```js
     //匿名函数
     div.onclick=function(){
@@ -73,7 +92,9 @@
         console.log("你好")
     }
 ```
-+ 有一个参数的箭头函数
+
+- 有一个参数的箭头函数
+
 ```js
     var fn=(a)=>{
         console.log("abc");
@@ -83,23 +104,69 @@
         console.log("abc");
     }
 ```
-+ 有2个及更多参数的箭头函数
+
+- 有2个及更多参数的箭头函数
+
 ```js
     var f=(a,b,c)=>{
         console.log("abc")
     }
 ```
 
-+ 箭头函数和普通匿名函数有哪些不同？
-    - 函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。
-    - 不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。
-    - 不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用 rest 参数代替。
-    - （不常用）不可以使用yield命令，因此箭头函数不能用作 Generator 函数。 
-        - generator函数现在经常用async替代
+- 箭头函数和普通匿名函数有哪些不同？
+
+  - 函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。
+
+  - 不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。
+
+  - 不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用 rest 参数代替。
+
+  - （不常用）不可以使用yield命令，因此箭头函数不能用作 Generator 函数。 
+
+    - generator函数现在经常用async替代
+
+      ```js
+       var p={
+              age:18,
+              //es6中对象方法的箭头函数表示形式
+              run:()=>{
+                  setTimeout(()=>{
+                      //this:window
+                      console.log(this);//this是window
+                  },100)
+              },
+              travel:function(){
+                  //this:p
+                  setTimeout(()=>{
+                      console.log(this);//this是p
+                  },100)
+              },
+              //推荐使用的方式☆☆☆：es6中对象方法的简写形式
+              say(){
+                  console.log("say方法中的this：",this);//p
+                  setTimeout(()=>{
+                      console.log("say内部的延迟函数：",this);//this是p
+                  },100)
+              },
+          }
+
+          p.run();
+
+          p.travel();
+
+          p.say();
+      ```
+
+      ​
 
 ## 对象的扩展
-+ Object.assign：实现拷贝继承
-+ 对象扩展运算符
+
+- Object.assign：实现拷贝继承 
+
+  就是进行对象的浅拷贝
+
+- 对象扩展运算符
+
 ```js
     var obj1={ age:5,gender:"男" }
     var obj2={ ...obj1 }
@@ -107,8 +174,11 @@
 ```
 
 ## Promise
+
 ### 为什么要有promise：解决（回调地狱）的问题
+
 ### 回调地狱：
+
 ```js
     //跟以前的if条件地狱很像
     // if(){
@@ -132,6 +202,7 @@
 ```
 
 ### Promise函数基本用法
+
 ```js
     var promise=new Promise((resolve,reject)=>{
         //b 把需要执行的异步操作放在这里
@@ -150,6 +221,7 @@
 ```
 
 ### Promise函数实现多层回调
+
 ```js
     new Promise((resolve,reject)=>{
         $.get("/getUser",res=>{
@@ -175,7 +247,9 @@
 ```
 
 ### Promise函数错误处理
-+ 第一种方式
+
+- 第一种方式
+
 ```js
     new Promise((resolve,reject)=>{
         $.ajax({
@@ -195,7 +269,8 @@
     })
 ```
 
-+ 第二种方式
+- 第二种方式
+
 ```js
     new Promise((resolve,reject)=>{
         $.ajax({
@@ -213,11 +288,26 @@
     }).catch(resError=>{
         //失败的返回值
     })
-
 ```
 
+```js
+    //上面2种错误处理的方式，第二种更加推荐
+
+    //第二种方式更强大的地方在于：
+
+    //a、不仅仅可以捕获到reject传递的参数
+
+    //b、还可以捕获到：成功的回调中发生的错误
+```
+
+​     //fetch是新浏览器自带的。
+
+​    //axios就是一个基于Promise封装出来的进行ajax请求的库
+
 ## async
-+ async其实是一个promise的语法糖
+
+- async其实是一个promise的语法糖
+
 ```js
     async function get(){
         console.log('开始执行');
@@ -234,14 +324,37 @@
     get();
 ```
 
-+ await可以执行异步操作，但是await必须在async函数内执行
+- await可以执行异步操作，但是await必须在async函数内执行
 
-+ await操作可以有返回值，这个返回值表示promise操作成功的返回值
+- await操作可以有返回值，这个返回值表示promise操作成功的返回值
 
-+ 如果await里面执行的异步操作发生了reject，或者发生了错误，那么只能使用try...catch语法来进行错误处理
+- 如果await里面执行的异步操作发生了reject，或者发生了错误，那么只能使用try...catch语法来进行错误处理
+
+  ```js
+    function q(){
+          return new Promise((resolve,reject)=>{
+              setTimeout(()=>{
+                  reject("你好");
+              },100)
+          })
+      }
+
+      (async function(){
+          try{
+              let res = await q();
+              console.log(res);
+          }catch(e){
+              console.log(e);
+          }
+      })()
+  ```
+
+  ​
 
 ## class
+
 ### 定义一个类
+
 ```js
     class Person {
         constructor(name) {
@@ -255,6 +368,7 @@
 ```
 
 ### 添加实例方法
+
 ```js
     class Person {
         constructor(name,age) {
@@ -272,9 +386,11 @@
 ```
 
 ### 添加静态方法
-+ 静态成员：静态属性、静态方法
-+ 静态属性：通过类本身来访问：Person.maxAge
-+ 静态方法：通过类本身来访问的一个方法：Person.born();
+
+- 静态成员：静态属性、静态方法
+- 静态属性：通过类本身来访问：Person.maxAge
+- 静态方法：通过类本身来访问的一个方法：Person.born();
+
 ```js
     class Animal {
         constructor(){
@@ -290,6 +406,7 @@
 ```
 
 ### 类的继承
+
 ```js
     //父类
     class Person {
@@ -320,25 +437,29 @@
 })
 
 //以前变量和字符串拼接，现在用模板字符串
-
 ```
 
 ## es6的新语法
-+ 个人建议：不要去试想着一下子全部把之前的代码习惯变成es6的方式
-    - 而是今年学会了模板字符串，把今天项目用到的所有字符串拼接都换成模板字符串
-    - 过了几天学会了箭头函数，把当天项目里面的所有用到的匿名函数都换成箭头函数
+
+- 个人建议：不要去试想着一下子全部把之前的代码习惯变成es6的方式
+  - 而是今年学会了模板字符串，把今天项目用到的所有字符串拼接都换成模板字符串
+  - 过了几天学会了箭头函数，把当天项目里面的所有用到的匿名函数都换成箭头函数
 
 ## 预习作业：通过MDN学习Object.defineProperty()的用法
 
 ## module -->放到后面的模块化课程中讲解
+
 ### 基本用法
-+ 导出模块：
+
+- 导出模块：
+
 ```js
     //common.js
     export default { name:"abc" }
 ```
 
-+ 导入模块：
+- 导入模块：
+
 ```js
     //b.js
     import common from "common.js"
@@ -347,6 +468,7 @@
 ```
 
 ### 模块有多个导出
+
 ```js
     //person.js
     export const jim = { country :"France" }
@@ -354,6 +476,7 @@
     //默认的导出
     export default { name:"abc" }
 ```
+
 ```js
     //index.js
     import person , { jim , tony } from "person.js"
@@ -364,6 +487,7 @@
 ```
 
 ### 模块导入导出取别名
+
 ```js
     //person.js
     export const tony = { color:"gray" }
