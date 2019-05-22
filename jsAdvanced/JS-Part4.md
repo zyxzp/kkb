@@ -316,3 +316,7 @@
 
 ## 作业2：写一个正则表达式，用于替换一个字符串的前后空格
 + 比如："   asdffsf  asdfasfsd asfas a "替换为"asdffsf  asdfasfsd asfas a"
+ 
+```
+     "   asdffsf  asdfasfsd asfas a ".replace(/^\s*|\s*$/g,"")
+```
