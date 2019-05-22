@@ -1,0 +1,31 @@
+let res=await fetch('xxx');
+let data=await res.json();
+
+let data=await (await fetch('xxx')).json();
+
+表连接：
+article_table+catalog_table
+
+SELECT
+*,
+article_table.title AS article_title,
+catalog_table.title AS catalog_title,
+article_table.ID AS article_ID
+FROM article_table
+LEFT JOIN catalog_table ON article_table.catalog_ID=catalog_table.ID
+ORDER BY article_table.created_time DESC LIMIT 10
+
+--------------------------------------------------------------------------------
+
+搜索：
+SELECT * FROM xxx_table WHERE title LIKE '%aaa%'
+
+--------------------------------------------------------------------------------
+
+连接：
+
+SELECT *, article_table.title AS article_title, ... FROM article_table
+LEFT JOIN catalog_table ON article_table.catalog_ID=catalog_table.ID
+LEFT JOIN type_table ON article_table.type_ID=type_table.ID
+
+--------------------------------------------------------------------------------

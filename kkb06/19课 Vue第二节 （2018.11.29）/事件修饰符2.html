@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="vue.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div id="div1">
+      <div class="" @click="fn1()">
+        <input type="button" value="按钮" @click.once="fn2()">
+      </div>
+    </div>
+  </body>
+
+  <script>
+  let vm=new Vue({
+    el: '#div1',
+    data: {
+
+    },
+    methods: {
+      fn1(){
+        alert('1111');
+      },
+      fn2(){
+        alert('222');
+      }
+    }
+  });
+  </script>
+</html>

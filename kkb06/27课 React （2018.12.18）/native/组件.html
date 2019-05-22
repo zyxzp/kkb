@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="browser.js" charset="utf-8"></script>
+    <script src="react.development.js" charset="utf-8"></script>
+    <script src="react-dom.development.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div id="div1"></div>
+  </body>
+  <script type="text/babel">
+    class Cmp1 extends React.Component{
+      constructor(...args){
+        super(...args);
+
+        this.name='blue';
+        this.age=18;
+      }
+
+      fn(){
+        return 'aaa';
+      }
+
+      render(){
+        let div=<div style={{color: 'red'}}>bbbb</div>;
+        return (
+          <div>
+            姓名：{this.name}<br/>
+            年龄：{this.age+5}<br/>
+            {this.fn()}
+            {div}
+          </div>
+        );
+      }
+    }
+
+
+
+    let root=document.getElementById('div1');
+
+    ReactDOM.render(
+      <div>
+        <label htmlFor="user">用户名：</label>
+        <input id="user" type="text" />
+        <Cmp1></Cmp1>
+      </div>,
+      root
+    );
+  </script>
+</html>

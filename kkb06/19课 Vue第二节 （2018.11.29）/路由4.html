@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="vue.js" charset="utf-8"></script>
+    <script src="vue-router.js" charset="utf-8"></script>
+    <style media="screen">
+    .links {overflow:hidden;}
+    .links .nav {float: left; color:#CCC; margin-right:10px}
+    .links .router-link-active {color:black;}
+    </style>
+  </head>
+  <body>
+    <div id="div1">
+      <div class="links">
+        <input type="button" value="页面1" @click="fn1()">
+        <input type="button" value="页面2" @click="fn2()">
+        <input type="button" value="页面3" @click="fn3()">
+      </div>
+      文字
+      <!--1.路由容器-->
+      <router-view></router-view>
+    </div>
+  </body>
+
+  <script>
+  //2.路由表
+  let router=new VueRouter({
+    routes: [
+      {
+        path: '/news/aaa/',
+        component: {
+          template: '<div>新闻2</div>'
+        }
+      },
+      {
+        path: '/news/:id/',
+        name: 'news',
+        component: {
+          template: '<div>新闻：{{$route.params.id}}</div>'
+        }
+      },
+
+      {
+        path: '/b',
+        component: {template: '<div>bbbbb</div>'}
+      },
+      {
+        path: '/c',
+        component: {template: '<div>cccccc</div>'}
+      }
+    ]
+  });
+
+  let vm=new Vue({
+    el: '#div1',
+    data: {},
+    methods: {
+      fn1(){
+        //this.$router.push('/news/19');
+        this.$router.replace({name: 'news', params: {id: Math.random()}});
+      },
+      fn2(){
+        this.$router.push('/b');
+      },
+      fn3(){
+        this.$router.push('/c');
+      }
+    },
+    router
+  });
+  </script>
+</html>

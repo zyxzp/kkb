@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="vue.js" charset="utf-8"></script>
+    <style media="screen">
+    .box {width:200px; height:200px; background:#CCC;}
+    </style>
+  </head>
+  <body>
+    <div id="div1">
+      <ul>
+        <li v-for="s in str">
+          {{s}}
+        </li>
+      </ul>
+    </div>
+  </body>
+
+  <script>
+  let vm=new Vue({
+    el: '#div1',
+    data: {
+      str: 'sdfsfgfdgh'
+    }
+  });
+  </script>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="vue.js" charset="utf-8"></script>
+    <script src="vue-router.js" charset="utf-8"></script>
+    <style media="screen">
+    .links {overflow:hidden;}
+    .links .nav {float: left; color:#CCC; margin-right:10px}
+    .links .router-link-active {color:black;}
+    </style>
+  </head>
+  <body>
+    <div id="div1">
+      <div class="links">
+        <router-link class="nav" to="/news/aaa">页面1</router-link>
+        <router-link class="nav" to="/b">页面2</router-link>
+        <router-link class="nav" to="/c">页面3</router-link>
+      </div>
+      文字
+      <!--1.路由容器-->
+      <router-view></router-view>
+    </div>
+  </body>
+
+  <script>
+  //2.路由表
+  let router=new VueRouter({
+    routes: [
+      {
+        path: '/news/aaa/',
+        component: {
+          template: '<div>新闻2</div>'
+        }
+      },
+      {
+        path: '/news/:id/',
+        component: {
+          template: '<div>新闻：{{$route.params.id}}</div>'
+        }
+      },
+
+      {
+        path: '/b',
+        component: {template: '<div>bbbbb</div>'}
+      },
+      {
+        path: '/c',
+        component: {template: '<div>cccccc</div>'}
+      }
+    ]
+  });
+
+  let vm=new Vue({
+    el: '#div1',
+    data: {},
+    router
+  });
+  </script>
+</html>

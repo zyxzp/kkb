@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="browser.js" charset="utf-8"></script>
+    <script src="react.development.js" charset="utf-8"></script>
+    <script src="react-dom.development.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div id="div1"></div>
+  </body>
+  <script type="text/babel">
+    class Parent extends React.Component{
+      constructor(...args){
+        super(...args);
+
+        this.state={a: 0};
+      }
+
+      add(n){
+        this.setState({
+          a: this.state.a+n
+        });
+      }
+
+      render(){
+        return (
+          <div>
+            {this.state.a}
+            <Child parent={this}/>
+          </div>
+        );
+      }
+    }
+
+    class Child extends React.Component{
+      constructor(...args){
+        super(...args);
+      }
+
+      render(){
+        return (
+          <div>
+            <input type="button" value="+1" onClick={function (){
+              this.props.parent.add(11)
+            }.bind(this)} />
+          </div>
+        );
+      }
+    }
+
+    let root=document.getElementById('div1');
+
+    ReactDOM.render(
+      <div>
+        <Parent a={0} />
+      </div>,
+      root
+    );
+  </script>
+</html>

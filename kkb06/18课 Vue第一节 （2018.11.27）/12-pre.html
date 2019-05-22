@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="vue.js" charset="utf-8"></script>
+    <style media="screen">
+    .box {width:200px; height:200px; background:#CCC;}
+    </style>
+  </head>
+  <body>
+    <div id="div1">
+      <div v-pre>
+        {{aaa}}-{{bbb}}
+      </div>
+    </div>
+  </body>
+
+  <script>
+  let vm=new Vue({
+    el: '#div1',
+    data: {
+      a: 0
+    },
+    methods: {
+      fn(){
+        this.a++;
+      }
+    }
+  });
+  </script>
+</html>

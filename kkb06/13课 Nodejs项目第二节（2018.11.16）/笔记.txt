@@ -1,0 +1,3 @@
+UPDATE banner_table SET title='xx', src='xx', tt=xxx WHERE ID=1
+
+ctx.db.query(`UPDATE banner_table SET title=?, src=?, tt=? WHERE ID=?`, [xx, xx, xx, xxx])

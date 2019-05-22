@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="vue.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div id="div1">
+      <form action="index.html" method="post" @submit.prevent="submit()">
+        <input type="submit" value="提交">
+      </form>
+    </div>
+  </body>
+
+  <script>
+  let vm=new Vue({
+    el: '#div1',
+    data: {
+
+    },
+    methods: {
+      submit(){
+        alert('提交');
+        console.log();
+      }
+    }
+  });
+  </script>
+</html>

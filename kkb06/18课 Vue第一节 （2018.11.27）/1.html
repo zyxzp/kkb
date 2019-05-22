@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="vue.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div id="div1">
+      姓名：{{name}}<br>
+      年龄：{{age}}<br>
+      出生：{{calcBirth()}}
+    </div>
+  </body>
+
+  <script>
+  let vm=new Vue({
+    el: '#div1',
+    data: {
+      name: 'blue',
+      age: 18
+    },
+    methods: {
+      calcBirth(){
+        return new Date().getFullYear()-this.age;
+      }
+    }
+  });
+  </script>
+</html>

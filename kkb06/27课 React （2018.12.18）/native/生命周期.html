@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="browser.js" charset="utf-8"></script>
+    <script src="react.development.js" charset="utf-8"></script>
+    <script src="react-dom.development.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div id="div1"></div>
+  </body>
+  <script type="text/babel">
+    class Parent extends React.Component{
+      constructor(...args){
+        super(...args);
+
+        this.state={a: 0};
+      }
+
+      componentDidMount(){
+        console.log('父组件已经挂载');
+      }
+
+      componentDidUpdate(){
+        console.log('父组件已经更新');
+      }
+
+      fn(){
+        this.setState({
+          a: this.state.a+3
+        });
+      }
+
+      render(){
+        return (
+          <div>
+            <input type="button" value="+1" onClick={this.fn.bind(this)} />
+            <Child a={this.state.a}/>
+          </div>
+        );
+      }
+    }
+
+    class Child extends React.Component{
+      constructor(...args){
+        super(...args);
+      }
+
+      componentDidMount(){
+        console.log('子组件已经挂载');
+      }
+
+      componentDidUpdate(){
+        console.log('子组件已经更新');
+      }
+
+      render(){
+        return (
+          <div>
+            {this.props.a}
+          </div>
+        );
+      }
+    }
+
+    let root=document.getElementById('div1');
+
+    ReactDOM.render(
+      <div>
+        <Parent />
+      </div>,
+      root
+    );
+  </script>
+</html>

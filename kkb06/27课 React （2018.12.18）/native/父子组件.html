@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="browser.js" charset="utf-8"></script>
+    <script src="react.development.js" charset="utf-8"></script>
+    <script src="react-dom.development.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div id="div1"></div>
+  </body>
+  <script type="text/babel">
+    class Parent extends React.Component{
+      constructor(...args){
+        super(...args);
+      }
+
+      render(){
+        return (
+          <ul>
+            {this.props.arr.map((str,index)=><Child txt={str} key={index}/>)}
+          </ul>
+        );
+      }
+    }
+
+    class Child extends React.Component{
+      constructor(...args){
+        super(...args);
+      }
+
+      render(){
+        return (
+          <li>
+            {this.props.txt}
+          </li>
+        );
+      }
+    }
+
+    let root=document.getElementById('div1');
+
+    ReactDOM.render(
+      <div>
+        <label htmlFor="user">用户名：</label>
+        <input id="user" type="text" />
+        <Parent arr={['dfsdf', 'sdfsdf', 'werwer']} />
+      </div>,
+      root
+    );
+  </script>
+</html>

@@ -1,0 +1,36 @@
+onClick里面的函数写成会直接执行？要传参是不是很麻烦
+{ function (){}.bind(this) }
+
+oDiv.onclick=function (){};
+oDiv.onclick=fn;
+
+redux
+react-router
+
+
+老师能讲下多页面分开打包吗，我现在做的公司项目，用的vue开发用于原生的h5页面，所有的页面都单独开发和打包
+
+这样的脚手架怎么搭建好？
+
+
+redux——集中状态管理
+provider：包在最外面
+connect：状态映射
+reducer：状态对象
+
+状态更新->action
+
+
+cnpm i redux react-redux -D
+
+--------------------------------------------------------------------------------
+
+单向数据流
+state->component->action->state...
+
+--------------------------------------------------------------------------------
+
+react-router-dom：
+Router
+Route
+Link

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="vue.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div id="div1">
+      <input type="text" v-model="user_info.name">
+    </div>
+  </body>
+
+  <script>
+  let vm=new Vue({
+    el: '#div1',
+    data: {
+      user_info: {
+        name: 'blue',
+        age: 18
+      }
+    },
+    watch: {
+      'user_info.name': function (){
+        console.log('name变了');
+      }
+    }
+  });
+  </script>
+</html>

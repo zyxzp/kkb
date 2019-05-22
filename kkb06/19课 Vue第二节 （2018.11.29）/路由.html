@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="vue.js" charset="utf-8"></script>
+    <script src="vue-router.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div id="div1">
+      <a href="#/a">页面1</a>
+      <a href="#/b">页面2</a>
+      <a href="#/c">页面3</a>
+      <br>
+      文字
+      <!--1.路由容器-->
+      <router-view></router-view>
+    </div>
+  </body>
+
+  <script>
+  //2.路由表
+  let router=new VueRouter({
+    routes: [
+      {
+        path: '/a',
+        component: {template: '<div>aaaaa</div>'}
+      },
+      {
+        path: '/b',
+        component: {template: '<div>bbbbb</div>'}
+      },
+      {
+        path: '/c',
+        component: {template: '<div>cccccc</div>'}
+      }
+    ]
+  });
+
+  let vm=new Vue({
+    el: '#div1',
+    data: {},
+    router
+  });
+  </script>
+</html>

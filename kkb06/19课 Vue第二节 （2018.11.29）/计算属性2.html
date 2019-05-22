@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="vue.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div id="div1">
+      姓：<input type="text" v-model="familyName"><br>
+      名：<input type="text" v-model="givenName"><br>
+      <input type="text" v-model="name">
+    </div>
+  </body>
+
+  <script>
+  let vm=new Vue({
+    el: '#div1',
+    data: {
+      familyName: '张',
+      givenName: '三'
+    },
+    computed: {
+      name: {
+        get(){
+          return this.familyName+this.givenName;
+        },
+        set(value){
+          this.familyName=value[0];
+          this.givenName=value.substring(1);
+        }
+      }
+    }
+  });
+  </script>
+</html>
